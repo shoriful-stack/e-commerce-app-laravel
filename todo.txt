@@ -1,0 +1,11 @@
+Step-1:
+    1/ create users table migration
+    2/ create profiles table migration
+    3/ create categories table migration
+    4/ create brands table migration
+    5/ create products table migration
+    6/ create product_details table migration
+    7/ create product_sliders table migration
+    8/ create product_reviews table migration
+    9/ create product_wishes table migration
+    10/ create product_carts table migration
