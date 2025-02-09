@@ -11,10 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('product_wishes', function (Blueprint $table) {
+        Schema::create('product_carts', function (Blueprint $table) {
             $table->id();
-            $table->string("email", 50)->unique();
-            $table->unsignedBigInteger("product_id")->unique();
+            $table->string("email", 50);
+            $table->unsignedBigInteger("product_id");
+            $table->string("color", 200);
+            $table->string("size", 50);
 
             // Relationship
             $table->foreign("email")->references("profile_email")->on("profiles")->restrictOnDelete()->restrictOnUpdate();
@@ -30,6 +32,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('product_wishes');
+        Schema::dropIfExists('product_carts');
     }
 };

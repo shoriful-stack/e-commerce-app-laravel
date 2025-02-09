@@ -11,14 +11,15 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('product_wishes', function (Blueprint $table) {
+        Schema::create('product_reviews', function (Blueprint $table) {
             $table->id();
+            $table->string("description", 1000);
             $table->string("email", 50)->unique();
             $table->unsignedBigInteger("product_id")->unique();
 
             // Relationship
-            $table->foreign("email")->references("profile_email")->on("profiles")->restrictOnDelete()->restrictOnUpdate();
-            $table->foreign("product_id")->references("id")->on("products")->restrictOnDelete()->restrictOnUpdate();
+            $table->foreign("email")->references("profile_email")->on("profiles")->restrictOnDelete()->cascadeOnUpdate();
+            $table->foreign("product_id")->references("id")->on("products")->restrictOnDelete()->cascadeOnUpdate();
 
             $table->timestamp("created_at")->useCurrent();
             $table->timestamp("updated_at")->useCurrent()->useCurrentOnUpdate();
@@ -30,6 +31,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('product_wishes');
+        Schema::dropIfExists('product_reviews');
     }
 };

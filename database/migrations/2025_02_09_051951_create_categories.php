@@ -11,15 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('product_wishes', function (Blueprint $table) {
+        Schema::create('categories', function (Blueprint $table) {
             $table->id();
-            $table->string("email", 50)->unique();
-            $table->unsignedBigInteger("product_id")->unique();
-
-            // Relationship
-            $table->foreign("email")->references("profile_email")->on("profiles")->restrictOnDelete()->restrictOnUpdate();
-            $table->foreign("product_id")->references("id")->on("products")->restrictOnDelete()->restrictOnUpdate();
-
+            $table->string("categoryName", 50);
+            $table->string("categoryImg", 300);
             $table->timestamp("created_at")->useCurrent();
             $table->timestamp("updated_at")->useCurrent()->useCurrentOnUpdate();
         });
@@ -30,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('product_wishes');
+        Schema::dropIfExists('categories');
     }
 };
